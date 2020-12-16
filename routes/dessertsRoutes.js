@@ -8,7 +8,7 @@ router.use(express.json())
 router.use(cors())
 router.set('json spaces', 4)
 
-//GETS -----------------------------
+///// get
 router.get('/', (req,res) => {
   Desserts.find({})
       .then((data)=> {
@@ -23,13 +23,13 @@ router.get('/specific/:id', (req,res) => {
       })
 })
 
-//POSTS ----------------------------
+///// post
 router.post('/add', (req,res) => {
   var newDesserts = Desserts(req.body)
   newDesserts.save().then(()=> res.send("complete"))
 })
 
-//PUTS -----------------------------
+/////// put
 router.put('/update/:id', (req,res) => {
   console.log(req.params.id)
   Desserts.findByIdAndUpdate(req.params.id, req.body)
@@ -38,7 +38,7 @@ router.put('/update/:id', (req,res) => {
     })
 })
 
-//DELETES --------------------------
+////// delete
 router.delete('/delete/:id', (req,res) => {
   console.log(req.params.id)
   Desserts.findByIdAndDelete(req.params.id)
